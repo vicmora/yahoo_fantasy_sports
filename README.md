@@ -1,4 +1,4 @@
 # Yahoo Fantasy Sports
-Python module for the Yahoo Fantasy Sports API.
+Enhance my fantasy football experience with data-driven decisions and build a Python module in the process.
 
 See my projects page here: https://vicmora.github.io/projects/
