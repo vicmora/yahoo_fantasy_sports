@@ -39,16 +39,16 @@ class YahooFantasySports:
                                             request_token_secret,
                                             params={"oauth_verifier": verify})
 
-        parsed_access_token = parse_utf8_qsl(raw_access.content)
-        access_token = (parsed_access_token['oauth_token'], parsed_access_token['oauth_token_secret'])
+        self.parsed_access_token = parse_utf8_qsl(raw_access.content)
+        access_token = (self.parsed_access_token['oauth_token'], self.parsed_access_token['oauth_token_secret'])
 
         # log time
         self.start_time = time.time()
         self.end_time = self.start_time + 3600
         
         # store tokens
-        self.credentials['access_token'] = parsed_access_token['oauth_token']
-        self.credentials['access_token_secret'] = parsed_access_token['oauth_token_secret']
+        self.credentials['access_token'] = self.parsed_access_token['oauth_token']
+        self.credentials['access_token_secret'] = self.parsed_access_token['oauth_token_secret']
         self.tokens = (self.credentials['access_token'], self.credentials['access_token_secret'])
 
         # start session
@@ -61,9 +61,9 @@ class YahooFantasySports:
 
 
         # refresh a session
-        self.tokens = self.oauth.get_access_token(parsed_access_token['oauth_token'],
-                                                  parsed_access_token['oauth_token_secret'],
-                                                  params={'oauth_session_handle':parsed_access_token['oauth_session_handle']}
+        self.tokens = self.oauth.get_access_token(self.parsed_access_token['oauth_token'],
+                                                  self.parsed_access_token['oauth_token_secret'],
+                                                  params={'oauth_session_handle':self.parsed_access_token['oauth_session_handle']}
                                                  )
 
         # update stored tokens
